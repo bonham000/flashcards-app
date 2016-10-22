@@ -12,6 +12,12 @@ export const MULTIPLY = 'MULTIPLY'
 export const DIVIDE = 'DIVIDE'
 export const RESET = 'RESET'
 
+// flashcards
+export const ADD_FLASHCARD = 'ADD_FLASHCARD'
+export const REMOVE_FLASHCARD = 'REMOVE_FLASHCARD'
+export const EDIT_FLASHCARD = 'EDIT_FLASHCARD'
+export const CLEAR_FLASHCARDS = 'CLEAR_FLASHCARDS'
+
 // notes
 export const ADD_NOTE = 'ADD_NOTE'
 export const REMOVE_NOTE = 'REMOVE_NOTE'

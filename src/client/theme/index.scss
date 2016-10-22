@@ -1,9 +1,11 @@
+$platinum: #DEE5E5;
 $mint: #0AC832;
 $dark: #0A021B;
 $nav: #0A021B;
 $body: rgb(25,35,45);
 $darkerBody: #191E28;
 $gray: #C8C8C8;
+$border: #63E2C6;
 
 body {
 	background: $body;
@@ -17,9 +19,16 @@ body {
 	}
 }
 
+.childContainer {
+	display: flex;
+	justify-content: center;
+	padding-top: 25px;
+	padding-bottom: 75px;
+}
+
 .navWrapper {
 	background: $nav;
-	border-bottom: 2px solid #63E2C6;
+	border-bottom: 2px solid $border;
 	width: 100vw;
 	.linksWrapper {
 		max-width: 1200px;
@@ -42,12 +51,7 @@ body {
 	}
 }
 
-.childContainer {
-	display: flex;
-	justify-content: center;
-	padding-top: 25px;
-	padding-bottom: 75px;
-}
+
 
 .postsComponent {
 	.post {
@@ -158,7 +162,53 @@ body {
 	}
 }
 
+.flashcardsComponents {
+	a:hover {
+			cursor: pointer;
+			color: $mint !important;
+	}
+	.cardsWrapper {
+		text-align: center;
+		.cardWrapper {
+			width: 1250px;
+			margin: 15px auto;
+			padding-top: 25px;
+			padding-bottom: 25px;
+			border: 1px solid $border;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			justify-content: space-around;
+			background: $darkerBody;
+			.front, .back {
+				margin: 10px;
+				padding: 3px 25px;
+				width: 500px;
+				background: $mint;
+				color: black;
+			}
+		}
+	}
+}
 
+.addFlashcardsComponent {
+	display: flex;
+	flex-wrap: nowrap;
+	flex-direction: column;
+	justify-content: center;
+	input {
+		font-size: 30px;
+		padding: 45px 75px;
+		background: #F1FFE7;
+	}
+	button {
+		font-size: 32px;
+		border: none;
+		background: white;
+		padding: 8px 4px;
+		margin-top: 25px;
+	}
+}
 
 
 
