@@ -31,8 +31,17 @@ const flashcards = (state = [], action) => {
 			let newFlashcards = state.slice();
 			let removeID = action.id;
 			newFlashcards.splice(removeID, 1);
+
+			let reIndexed = newFlashcards.map( (card, idx) => {
+				return ({
+					id: idx,
+					front: card.front,
+					back: card.back,
+					confidence: 0
+				});
+			});
 			
-			return newFlashcards;
+			return reIndexed;
 			
 		case types.CLEAR_FLASHCARDS:
 			return []

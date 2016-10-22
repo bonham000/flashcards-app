@@ -59,6 +59,7 @@
     "compression": "^1.6.2",
     "express": "^4.14.0",
     "express-history-api-fallback": "^2.0.0",
+    "lodash": "^4.16.4",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
