@@ -1,6 +1,13 @@
-import { combineReducers } from 'redux';
-import counting from './counting';
+import { combineReducers } from 'redux'
+import bigCount from './bigCount'
+import posts from './posts'
+import math from './math'
+import notes from './notes'
+
 
 export default combineReducers({
-  counting,
+  bigCount,
+  posts,
+  math,
+  notes,
 });

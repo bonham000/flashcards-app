@@ -13,6 +13,10 @@ if (NODE_ENV === 'development') {
   prodConfig(app);
 }
 
+app.get('/page', (req, res) => {
+	res.send('this is a demo alternate route');
+});
+
 app.use(express.static('dist/client'));
 app.use(fallback(path.join(__dirname, '../../dist/client/index.html')));
 
