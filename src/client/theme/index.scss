@@ -164,8 +164,13 @@ body {
 
 .flashcardsComponents {
 	a:hover {
-			cursor: pointer;
-			color: $mint !important;
+		cursor: pointer;
+		color: $mint !important;
+	}
+	.header {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
 	}
 	.cardsWrapper {
 		text-align: center;
@@ -179,13 +184,18 @@ body {
 			flex-direction: row;
 			flex-wrap: nowrap;
 			justify-content: space-around;
+			align-items: center;
 			background: $darkerBody;
 			.front, .back {
 				margin: 10px;
 				padding: 3px 25px;
 				width: 500px;
-				background: $mint;
+				background: #F1FFE7;
 				color: black;
+			}
+			.remove:hover {
+				color: red;
+				cursor: pointer;
 			}
 		}
 	}
@@ -210,7 +220,46 @@ body {
 	}
 }
 
-
+.studyComponent {
+	text-align: center;
+	.studyOptions {
+		button {
+			font-size: 32px;
+			border: none;
+			background: white;
+			padding: 15px 10px;
+			margin: 5px 15px;
+		}
+		button:hover {
+			cursor: pointer;
+			background: $border;
+		}
+	}
+	.studyView {
+		.studyCard {
+			width: 500px;
+			padding: 35px;
+			font-size: 35px;
+			color: rgb(20,20,20);
+		}
+		.studyCard:hover {
+			cursor: pointer;
+		}
+		button {
+			font-size: 32px;
+			border: none;
+			background: white;
+			padding: 8px 16px;
+			margin-top: 25px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		button:hover {
+			cursor: pointer;
+			background: $border;
+		}
+	}
+}
 
 
 

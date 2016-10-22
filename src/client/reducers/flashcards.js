@@ -28,10 +28,11 @@ const flashcards = (state = [], action) => {
 			return editedCards;
 		
 		case types.REMOVE_FLASHCARD:
-			let curFlashcards = state.slice();
+			let newFlashcards = state.slice();
 			let removeID = action.id;
-			let removedCards = curFlashcards.splice(removeID, 1);
-			return removedCards;
+			newFlashcards.splice(removeID, 1);
+			
+			return newFlashcards;
 			
 		case types.CLEAR_FLASHCARDS:
 			return []

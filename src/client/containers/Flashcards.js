@@ -27,13 +27,19 @@ class Flashcards extends React.Component {
 					<div className = "back">
 						<h1>{card.back}</h1>
 					</div>
+					<div className = "remove" onClick = {this.props.actions.removeFlashcard.bind(this, card.id)}>
+						<h1>&times;</h1>
+					</div>
 				</div>
 				)
 		});
 		return (
 			<div className = "flashcardsComponents">
-				<h1>Flashcards Page</h1>
-				<Link to = 'edit-flashcards'><h3>Click here to add new cards</h3></Link>
+				<div className = "header">
+					<h2>Flashcards Page</h2>
+					<Link to = 'edit-flashcards'><h2>Click here to add new cards!</h2></Link>
+					<Link to = 'study'><h2>Click here to begin studying!</h2></Link>
+				</div>
 				<div className = "cardsWrapper">
 					{renderFlashcards}
 				</div>

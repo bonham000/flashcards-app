@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react'
+import { browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as flashcardActions from '../actions/flashcards'
@@ -31,13 +32,15 @@ class EditFlashcards extends React.Component {
 		});
 	}
 	addNewCard() {
-		let newCard = {
-			front: this.state.front,
-			back: this.state.back,
-			id: this.props.flashcards.length
+		if (this.state.front !== '' && this.state.back !== '') {
+			let newCard = {
+				front: this.state.front,
+				back: this.state.back,
+				id: this.props.flashcards.length
+			}
+			this.props.actions.addFlashcard(newCard);
+			browserHistory.push('/flashcards');
 		}
-		this.props.actions.addFlashcard(newCard);
-
 	}
 	render() {
 		return (

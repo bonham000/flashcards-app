@@ -1,5 +1,6 @@
 
 import React, { PropTypes } from 'react'
+import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as noteActions from '../actions/notes'
@@ -45,6 +46,9 @@ class Notes extends React.Component {
 		return (
 		<div className = 'notesPageContainer'>
 			<h1>This is the Notes Page</h1>
+			<Link to = '/add-notes'>
+				<h3>Click here to add a new note</h3>
+			</Link>
 			{notes}
 		</div>
 		)
