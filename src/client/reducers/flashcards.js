@@ -19,13 +19,13 @@ const flashcards = (state = [], action) => {
 		case types.EDIT_FLASHCARD:
 			let currFlashcards = state.slice();
 			let editedCard = {
-				id: action.id,
 				front: action.front,
 				back: action.back,
+				id: action.id,
 				confidence: 0
 			}
-			let editedCards = currFlashcards[action.id] = editedCard;
-			return editedCards;
+			currFlashcards[action.id] = editedCard;
+			return currFlashcards;
 		
 		case types.REMOVE_FLASHCARD:
 			let newFlashcards = state.slice();

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import { browserHistory } from 'react-router'
+import { Link, browserHistory } from 'react-router'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as flashcardActions from '../actions/flashcards'
@@ -13,6 +13,9 @@ import * as flashcardActions from '../actions/flashcards'
 	}),
 )
 class EditFlashcards extends React.Component {
+	componentWillMount() {
+		window.addEventListener('keydown', this.handleKeyPress);
+	}
 	static propTypes = {
 		flashcards: PropTypes.array.isRequired,
 		actions: PropTypes.object.isRequired,
@@ -25,6 +28,14 @@ class EditFlashcards extends React.Component {
 		}
 		this.handleInput = this.handleInput.bind(this);
 		this.addNewCard = this.addNewCard.bind(this);
+		this.handleKeyPress = this.handleKeyPress.bind(this);
+	}
+	handleKeyPress(key) {
+		if (key.keyCode === 13) {
+			if (this.state.front !== '' && this.state.back !== '') {
+				this.addNewCard();
+			}
+		}
 	}
 	handleInput(event) {
 		this.setState({
@@ -39,7 +50,11 @@ class EditFlashcards extends React.Component {
 				id: this.props.flashcards.length
 			}
 			this.props.actions.addFlashcard(newCard);
-			browserHistory.push('/flashcards');
+			this.setState({
+				front: '',
+				back: ''
+			});
+			document.getElementById('frontCardInput').focus();
 		}
 	}
 	render() {
@@ -49,6 +64,7 @@ class EditFlashcards extends React.Component {
 				<input
 					type = "text"
 					name = "front"
+					id = "frontCardInput"
 					className = "cardInput"
 					placeholder = "Card Front"
 					value = {this.state.front}
@@ -61,6 +77,9 @@ class EditFlashcards extends React.Component {
 					value = {this.state.back}
 					onChange = {this.handleInput} /><br />
 				<button onClick = {this.addNewCard}>Submit and Save Cards</button>
+				<Link to = 'flashcards'>
+					<h2>Return to View All Cards</h2>
+				</Link>
 			</div>
 		);
 	}

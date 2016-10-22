@@ -20,7 +20,8 @@ export const editFlashcard = (flashcard, id) => {
 	return {
 		type: types.EDIT_FLASHCARD,
 		front: flashcard.front,
-		back: flashcard.back
+		back: flashcard.back,
+		id: id
 	}
 }
 

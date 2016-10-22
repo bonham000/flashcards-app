@@ -44,7 +44,7 @@ class BeginStudy extends React.Component {
 		}
 		if (!this.state.front) {
 			cardStyle = {
-				background: '#FFE66D'
+				background: '#F7DD72'
 			}
 		}
 

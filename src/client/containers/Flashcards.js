@@ -17,6 +17,58 @@ class Flashcards extends React.Component {
 		flashcards: PropTypes.array.isRequired,
 		actions: PropTypes.object.isRequired,
 	}
+	constructor(props) {
+		super(props);
+		this.state = {
+			edit: false,
+			editID: 0,
+			editFront: '',
+			editBack: ''
+		}
+		this.editNote = this.editNote.bind(this);
+		this.handleEditFront = this.handleEditFront.bind(this);
+		this.handleEditBack = this.handleEditBack.bind(this);
+		this.cancelEdit = this.cancelEdit.bind(this);
+		this.submitEdit = this.submitEdit.bind(this);
+	}
+	editNote(id) {
+		let editNote = this.props.flashcards[id];
+		this.setState({
+			edit: true,
+			editID: id,
+			editFront: editNote.front,
+			editBack: editNote.back
+		});
+	}
+	handleEditFront(e) {
+		this.setState({
+			editFront: e.target.value
+		})
+	}
+	handleEditBack(e) {
+		this.setState({
+			editBack: e.target.value
+		})
+	}
+	cancelEdit() {
+		this.setState({
+			edit: false
+		});
+	}
+	submitEdit() {
+		let editedNote = {
+			front: this.state.editFront,
+			back: this.state.editBack,
+			id: this.state.editID
+		}
+		this.props.actions.editFlashcard(editedNote, this.state.editID);
+		this.setState({
+			edit: false,
+			editID: 0,
+			editFront: '',
+			editBack: ''
+		});
+	}
 	render() {
 		const renderFlashcards = this.props.flashcards.map( (card) => {
 			return (
@@ -27,22 +79,46 @@ class Flashcards extends React.Component {
 					<div className = "back">
 						<h1>{card.back}</h1>
 					</div>
-					<div className = "remove" onClick = {this.props.actions.removeFlashcard.bind(this, card.id)}>
-						<h1>&times;</h1>
+					<div className = "options">
+						<div className = "edit" onClick = {this.editNote.bind(this, card.id)}>
+							<i className = "fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+						</div>
+						<div className = "remove" onClick = {this.props.actions.removeFlashcard.bind(this, card.id)}>
+							<i className = "fa fa-times-circle fa-3x" aria-hidden="true"></i>
+						</div>
 					</div>
 				</div>
-				)
+			)
 		});
 		return (
 			<div className = "flashcardsComponents">
-				<div className = "header">
-					<h2>Flashcards Page</h2>
-					<Link to = 'edit-flashcards'><h2>Click here to add new cards!</h2></Link>
-					<Link to = 'study'><h2>Click here to begin studying!</h2></Link>
-				</div>
-				<div className = "cardsWrapper">
-					{renderFlashcards}
-				</div>
+				{ !this.state.edit ? <div>
+					<div className = "header">
+						<h2>Flashcards Page</h2>
+						<Link to = 'edit-flashcards'><h2>Click here to add new cards!</h2></Link>
+						<Link to = 'study'><h2>Click here to begin studying!</h2></Link>
+					</div>
+					<div className = "cardsWrapper">
+						{renderFlashcards}
+					</div>
+				</div> : <div className = "editFlashcard">
+					<h1>Edit a Note</h1>
+
+					<input
+						type = "text"
+						className = "editFront"
+						value = {this.state.editFront}
+						onChange = {this.handleEditFront} />
+
+					<input
+						type = "text"
+						className = "editBack"
+						value = {this.state.editBack}
+						onChange = {this.handleEditBack} />
+					
+					<button onClick = {this.submitEdit}>Submit Edit</button>
+					<button onClick = {this.cancelEdit}>Cancel Edit</button>
+				</div> }
 			</div>
 		);
 	}

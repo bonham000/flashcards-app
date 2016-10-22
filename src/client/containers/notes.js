@@ -35,7 +35,6 @@ class Notes extends React.Component {
 					<h1>{note.title}</h1>
 					<p>{note.content}</p>
 					<h5
-						style = {{ color: 'red' }}
 						className = 'removeBtn'
 						onClick = {this.deleteNote.bind(this, note.id)}>
 						Delete this note!
