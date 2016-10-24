@@ -58,10 +58,9 @@ class addNotes extends React.Component {
 					placeholder = 'An Awesome Note'
 					value = {this.state.noteTitle}
 					onChange = {this.editTitle} />
-				<h3>Note:</h3>
+				<h3>Note Content:</h3>
 				<textarea
-					cols="30"
-					rows="10"
+
 					value = {this.state.noteContent}
 					onChange = {this.editContent}/><br />
 				<button onClick = {this.submitNote}>Add Note</button>

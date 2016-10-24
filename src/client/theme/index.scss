@@ -1,22 +1,26 @@
+// color variables
 $platinum: #DEE5E5;
 $mint: #0AC832;
 $dark: #0A021B;
 $nav: #0A021B;
 $body: rgb(25,35,45);
 $darkerBody: #191E28;
-$gray: #C8C8C8;
+$gray: rgb(230,230,230);
 $border: #63E2C6;
 $card: #EFEFF0;
 $warn: #F93943;
-$edit: #9BA2FF;
-$cardBack: #F7DD72;
+$orange: #FF8347;
+$strongOrange: #FF4900;
+$edit: #FFAF32;
 
+// main styling
 body {
 	background: $body;
 	color: $mint;
 	padding: 0;
 	margin: 0;
 	font-family: sans-serif;
+	font-family: Avenir;
 	min-width: 1300px;
 	a, a:visited {
 		text-decoration: none;
@@ -24,13 +28,7 @@ body {
 	}
 }
 
-.childContainer {
-	display: flex;
-	justify-content: center;
-	padding-top: 25px;
-	padding-bottom: 75px;
-}
-
+// navbar styling
 .navWrapper {
 	background: $nav;
 	border-bottom: 2px solid $border;
@@ -47,6 +45,9 @@ body {
 	  	text-decoration: none;
 	  	color: $gray;
 	  }
+	  a:hover {
+	  	color: #FF4900;
+	  }
 	  .active {
 	  	color: $mint !important;
 	  }
@@ -56,53 +57,47 @@ body {
 	}
 }
 
-.postsComponent {
-	.post {
-		max-width: 1000px;
+// styling of wrapper for props.children
+.childContainer {
+	display: flex;
+	justify-content: center;
+	padding-top: 25px;
+	padding-bottom: 75px;
+}
+
+.aboutPage {
+	max-width: 800px;
+	h1 {
+		padding-bottom: 10px;
+		margin-bottom: 15px;
+		border-bottom: 1px solid $border;
+	}
+	p {
 		font-size: 28px;
-		padding: 3px 15px;
-		border: 1px solid rgba(250,250,250,0.2);
-		background: $darkerBody;
-		.removePost {
-			float: right;
-			color: $gray;
-		}
-		.removePost:hover {
-			color: $warn;
-			cursor: pointer;
-		}
-	}
-	.postForm {
-		margin-top: 25px;
-		input {
-			font-size: 25px;
-			padding: 10px;
-			width: 500px;
-		}
-	}
-	button {
-		font-size: 25px;
-		border: none;
-		padding: 10px 20px;
-		margin-top: 10px;
-		background: rgba(245,245,245,1);
-	}
-	button:hover {
-		background: $border;
-		cursor: pointer;
 	}
 }
 
 .notesPageContainer {
+	text-align: center;
+	a:hover {
+		color: $strongOrange;
+	}
+	h2 {
+		margin-top: 35px;
+	}
 	.note {
-		border: 1px solid rgba(230,230,230,0.4);
+		border: 1px solid rgba(230,230,230,0.9);
 		padding: 10px 55px 25px 55px;
 		background: $darkerBody;
+		margin-top: 25px;
+		text-align: left;
+		width: 750px;
 		h1 {
-			border-bottom: 1px solid rgba(230,230,230,0.8);
+			padding-bottom: 15px;	
+			border-bottom: 1px solid $border;
 		}
 		p {
-			font-size: 28px;
+			font-size: 26px;
 		}
 		.removeBtn {
 			cursor: pointer;
@@ -111,6 +106,30 @@ body {
 		}
 		.removeBtn:hover {
 			text-decoration: underline;
+		}
+		.options {
+			display: flex;
+			flex-direction: row;
+			flex-wrap: nowrap;
+			margin-top: 45px;
+			margin-left: 705px;
+			.edit {
+				margin-right: 5px;
+			}
+			.remove {
+				margin-left: 5px;
+			}
+			.edit, .remove {
+				color: white;
+			}
+			.edit:hover {
+				color: $edit;
+				cursor: pointer;	
+			}
+			.remove:hover {
+				color: $warn;
+				cursor: pointer;
+			}
 		}
 	}
 }
@@ -121,11 +140,18 @@ body {
 	}
 	input {
 		font-size: 30px;
-		padding: 8px;
+		padding: 10px;
+		width: 600px;
+		background: rgb(235,235,235);
+		border: none;
 	}
 	textarea {
 		font-size: 26px;
-		padding: 8px;
+		padding: 10px;
+		width: 600px;
+		min-height: 175px;
+		background: rgb(235,235,235);
+		border: none;
 	}
 	button {
 		font-size: 32px;
@@ -134,12 +160,16 @@ body {
 		padding: 3px 12px;
 		margin-top: 25px;
 	}
+	button:hover {
+		background: $strongOrange;
+		cursor: pointer;
+	}
 }
 
 .flashcardsComponents {
 	a:hover {
 		cursor: pointer;
-		color: $mint !important;
+		color: $strongOrange !important;
 	}
 	.header {
 		display: flex;
@@ -154,7 +184,7 @@ body {
 	.cardsWrapper {
 		text-align: center;
 		.cardWrapper {
-			width: 1250px;
+			width: 950px;
 			margin: 15px auto;
 			padding: 20px;
 			display: flex;
@@ -163,18 +193,18 @@ body {
 			justify-content: space-around;
 			align-items: center;
 			background: $darkerBody;
-			border: 1px solid rgba(250,250,250,0.25);
+			border: 1px solid rgba(250,250,250,0.1);
 			.front, .back {
 				margin: 10px;
 				padding: 3px 25px;
-				width: 600px;
+				width: 400px;
 				color: black;
 			}
 			.front {
-				background: $card;
+				background: white;
 			}
 			.back {
-				background: $cardBack;
+				background: white;
 			}
 			.edit {
 				margin-bottom: 5px;
@@ -205,9 +235,6 @@ body {
 			background: $card;
 			border: none;
 		}
-		.editBack {
-			background: $cardBack;
-		}
 		button {
 			width: 300px;
 			margin: 25px auto 0px auto;
@@ -219,6 +246,12 @@ body {
 		button:hover {
 			background: $border;
 			cursor: pointer;
+		}
+		.submitBtn:hover {
+			background: $mint;
+		}
+		.cancelBtn:hover {
+			background: $warn;
 		}
 	}
 }
@@ -243,7 +276,7 @@ body {
 	}
 	button:hover {
 		cursor: pointer;
-		background: $border;
+		background: $orange;
 	}
 	h2:hover {
 		color: $mint;
@@ -254,6 +287,11 @@ body {
 .studyComponent {
 	text-align: center;
 	.studyOptions {
+		h1 {
+			padding-bottom: 25px;
+			margin-bottom: 35px;
+			border-bottom: 1px solid $border;
+		}
 		button {
 			font-size: 32px;
 			border: none;
@@ -263,15 +301,18 @@ body {
 		}
 		button:hover {
 			cursor: pointer;
-			background: $border;
+			background: $orange;
 		}
 	}
 	.studyView {
 		.studyCard {
-			width: 500px;
 			padding: 35px;
-			font-size: 35px;
 			color: rgb(20,20,20);
+			width: 550px;
+			height: 250px;
+			h1 {
+				font-size: 30px;
+			}
 		}
 		.studyCard:hover {
 			cursor: pointer;
@@ -285,9 +326,22 @@ body {
 			margin-left: 10px;
 			margin-right: 10px;
 		}
+		.forwardBtn {
+			background: #0FCF73;
+		}
+		.backwardBtn {
+			background: #FF4040;
+		}
+		.forwardBtn:hover, .backwardBtn:hover {
+			background: #2890F4;
+		}
+		.endBtn:hover {
+			cursor: pointer;
+			background: #FF8347;
+		}
 		button:hover {
 			cursor: pointer;
-			background: $border;
+			background: $mint;
 		}
 	}
 }

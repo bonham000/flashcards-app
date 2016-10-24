@@ -24,6 +24,10 @@ class Notes extends React.Component {
 			notes: []
 		}
 		this.deleteNote = this.deleteNote.bind(this);
+		this.editNote = this.editNote.bind(this);
+	}
+	editNote(id) {
+		console.log(id);
 	}
 	deleteNote(id) {
 		this.props.noteActions.removeNote(id);
@@ -34,21 +38,30 @@ class Notes extends React.Component {
 				<div className = 'note' key = {note.id}>
 					<h1>{note.title}</h1>
 					<p>{note.content}</p>
-					<h5
-						className = 'removeBtn'
-						onClick = {this.deleteNote.bind(this, note.id)}>
-						Delete this note!
-					</h5>
+
+					<div className = "options">
+						<div className = "edit" onClick = {this.editNote.bind(this, note.id)}>
+							<i className = "fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
+						</div>
+						<div className = "remove" onClick = {this.deleteNote.bind(this, note.id)}>
+							<i className = "fa fa-times-circle fa-2x" aria-hidden="true"></i>
+						</div>
+					</div>
+
 				</div>
 			);
 		});
 		return (
 		<div className = 'notesPageContainer'>
+			
 			<h1>This is the Notes Page</h1>
-			<Link to = '/add-notes'>
-				<h3>Click here to add a new note</h3>
-			</Link>
+			
 			{notes}
+
+			<Link to = '/add-notes'>
+				<h2>Click here to add a new note</h2>
+			</Link>
+
 		</div>
 		)
 	}

@@ -1,9 +1,4 @@
 
-// posts
-export const ADD_POST = 'ADD_POST'
-export const REMOVE_POST = 'REMOVE_POST'
-export const REMOVE_ALL = 'REMOVE_ALL'
-
 // flashcards
 export const ADD_FLASHCARD = 'ADD_FLASHCARD'
 export const REMOVE_FLASHCARD = 'REMOVE_FLASHCARD'

@@ -40,11 +40,11 @@ class BeginStudy extends React.Component {
 		let currentCard = this.state.studyDeck[this.state.currentIdx];
 
 		let cardStyle = {
-			background: '#DEE5E5'
+			background: '#FFE48F'
 		}
 		if (!this.state.front) {
 			cardStyle = {
-				background: '#F7DD72'
+				background: '#63E2C6'
 			}
 		}
 
@@ -57,10 +57,10 @@ class BeginStudy extends React.Component {
 					{this.state.front ? <h1>{currentCard.front}</h1> : <h1>{currentCard.back}</h1> }
 				</div>
 				
-				<button onClick = {this.retreat}>Backward</button>
-				<button onClick = {this.advance}>Forward</button><br />
+				<button className = 'backwardBtn' onClick = {this.retreat}>Backward</button>
+				<button className = 'forwardBtn' onClick = {this.advance}>Forward</button><br />
 				
-				<button onClick = {this.props.endStudy}>End Study</button>
+				<button className = 'endBtn' onClick = {this.props.endStudy}>End Study</button>
 			</div>
 		);
 	}

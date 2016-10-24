@@ -78,7 +78,7 @@ class EditFlashcards extends React.Component {
 					onChange = {this.handleInput} /><br />
 				<button onClick = {this.addNewCard}>Submit and Save Cards</button>
 				<Link to = 'flashcards'>
-					<h2>Return to View All Cards</h2>
+					<h2>Return to View All Flashcards</h2>
 				</Link>
 			</div>
 		);

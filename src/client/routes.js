@@ -3,23 +3,21 @@ import { Route } from 'react-router'
 
 // container components
 import App from './containers/App'
-import Posts from './containers/Posts'
-import Notes from './containers/notes'
-import addNotes from './containers/addNotes'
+import Notes from './containers/Notes'
+import addNotes from './containers/AddNotes'
 import Study from './containers/Study'
 import Flashcards from './containers/Flashcards'
-import EditFlashcards from './containers/EditFlashcards'
+import AddFlashcards from './containers/AddFlashcards'
 
 // presentational components
-import About from './components/About/About'
+import About from './components/About'
 
 export default (
   <Route component={App}>
     <Route path='/' name='home' component={About} />
-    <Route path='/posts' name='posts' component={Posts} />
     <Route path='/study' name='study' component={Study} />
     <Route path='/flashcards' name='flashcards' component={Flashcards} />
-    <Route path='/edit-flashcards' name='edit-flashcards' component={EditFlashcards} />
+    <Route path='/add-flashcards' name='add-flashcards' component={AddFlashcards} />
     <Route path='/notes' name='notes' component={Notes} />
     <Route path='/add-notes' name='notes' component={addNotes} />
   </Route>

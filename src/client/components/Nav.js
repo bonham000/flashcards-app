@@ -10,7 +10,7 @@ class Nav extends React.Component {
 				<h1><Link activeClassName = 'active' to = 'flashcards'>Flashcards</Link></h1>
 				<h1><Link activeClassName = 'active' to = 'study'>Study</Link></h1>
 				<h1><Link activeClassName = 'active' to = 'notes'>Notebook</Link></h1>
-				<h1><Link activeClassName = 'active' to = 'posts'>Posts</Link></h1>
+				<h1><Link activeClassName = 'active' to = 'add-notes'>Add Notes</Link></h1>
 		  </div>
 		</div>
 		);

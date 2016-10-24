@@ -74,17 +74,17 @@ class Flashcards extends React.Component {
 			return (
 				<div key = {card.id} className = "cardWrapper">
 					<div className = "front">
-						<h1>{card.front}</h1>
+						<h2>{card.front}</h2>
 					</div>
 					<div className = "back">
-						<h1>{card.back}</h1>
+						<h2>{card.back}</h2>
 					</div>
 					<div className = "options">
 						<div className = "edit" onClick = {this.editNote.bind(this, card.id)}>
-							<i className = "fa fa-pencil-square-o fa-3x" aria-hidden="true"></i>
+							<i className = "fa fa-pencil-square-o fa-2x" aria-hidden="true"></i>
 						</div>
 						<div className = "remove" onClick = {this.props.actions.removeFlashcard.bind(this, card.id)}>
-							<i className = "fa fa-times-circle fa-3x" aria-hidden="true"></i>
+							<i className = "fa fa-times-circle fa-2x" aria-hidden="true"></i>
 						</div>
 					</div>
 				</div>
@@ -95,14 +95,14 @@ class Flashcards extends React.Component {
 				{ !this.state.edit ? <div>
 					<div className = "header">
 						<h2>Flashcards View Page</h2>
-						<Link to = 'edit-flashcards'><h2>Click here to add new cards!</h2></Link>
+						<Link to = 'add-flashcards'><h2>Click here to add new cards!</h2></Link>
 						<Link to = 'study'><h2>Click here to begin studying!</h2></Link>
 					</div>
 					<div className = "cardsWrapper">
 						{renderFlashcards}
 					</div>
 				</div> : <div className = "editFlashcard">
-					<h1>Edit a Note</h1>
+					<h1>Edit a Flashcard</h1>
 
 					<input
 						type = "text"
@@ -116,8 +116,8 @@ class Flashcards extends React.Component {
 						value = {this.state.editBack}
 						onChange = {this.handleEditBack} />
 					
-					<button onClick = {this.submitEdit}>Submit Edit</button>
-					<button onClick = {this.cancelEdit}>Cancel Edit</button>
+					<button className = "submitBtn" onClick = {this.submitEdit}>Submit Edit</button>
+					<button className = "cancelBtn" onClick = {this.cancelEdit}>Cancel Edit</button>
 				</div> }
 			</div>
 		);
