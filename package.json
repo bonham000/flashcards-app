@@ -20,7 +20,7 @@
     "build:server": "babel src/server -d dist/server",
     "build": "npm-run-all build:*",
     "postinstall": "./node_modules/.bin/babel-node src/server -d dist/server cross-env NODE_ENV=production webpack --config webpack.config.js",
-    "start": "node dist/server/index.js"
+    "start": "./node_modules/.bin/babel-node dist/server/index.js"
   },
   "author": "Sean Smith",
   "license": "MIT",
