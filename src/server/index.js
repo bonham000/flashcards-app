@@ -3,7 +3,7 @@ import path from 'path';
 import fallback from 'express-history-api-fallback';
 import devConfig from './config/setup/dev';
 import prodConfig from './config/setup/prod';
-import { NODE_ENV, PORT } from './config/env';
+import { NODE_ENV } from './config/env';
 
 const app = express();
 
@@ -20,9 +20,11 @@ app.get('/page', (req, res) => {
 app.use(express.static('dist/client'));
 app.use(fallback(path.join(__dirname, '../../dist/client/index.html')));
 
-app.listen(PORT, (err) => {
+const port = process.env.PORT || 5000;
+
+app.listen(port, (err) => {
   if (err) throw err;
-  console.log(`Listening at port ${PORT} in ${NODE_ENV} mode`);
+  console.log(`Listening at port ${port} in ${NODE_ENV} mode`);
 });
 
 export default app;
