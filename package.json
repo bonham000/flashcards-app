@@ -19,7 +19,7 @@
     "build:client": "cross-env NODE_ENV=production webpack --config webpack.config.js",
     "build:server": "babel src/server -d dist/server",
     "build": "npm-run-all build:*",
-    "postinstall": "babel src/server -d dist/server cross-env NODE_ENV=production webpack --config webpack.config.js",
+    "postinstall": "./node_modules/.bin/babel-node src/server -d dist/server cross-env NODE_ENV=production webpack --config webpack.config.js",
     "start": "node dist/server/index.js"
   },
   "author": "Sean Smith",
@@ -59,6 +59,7 @@
     "webpack-hot-middleware": "^2.12.2"
   },
   "dependencies": {
+    "babel": "^6.5.2",
     "bluebird": "^3.4.6",
     "compression": "^1.6.2",
     "express": "^4.14.0",
