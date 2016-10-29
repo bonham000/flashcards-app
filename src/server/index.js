@@ -1,8 +1,6 @@
 import express from 'express';
 import path from 'path';
 import fallback from 'express-history-api-fallback';
-import dotenv from 'dotenv'
-dotenv.config();
 //import devConfig from './config/setup/dev';
 //import prodConfig from './config/setup/prod';
 import { NODE_ENV } from './config/env';
