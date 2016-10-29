@@ -18,7 +18,7 @@
     "build": "npm-run-all build:*",
     "start": "node dist/server/index.js"
   },
-  "author": "Ruslan Karaev",
+  "author": "Sean Smith",
   "license": "MIT",
   "devDependencies": {
     "autoprefixer": "^6.4.1",

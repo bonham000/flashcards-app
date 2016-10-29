@@ -34,7 +34,7 @@ body {
 	border-bottom: 2px solid $border;
 	width: 100vw;
 	.linksWrapper {
-		max-width: 1200px;
+		width: 1200px;
 		margin: auto;
 	  display: flex;
 	  flex-direction: row;
@@ -71,9 +71,14 @@ body {
 		padding-bottom: 10px;
 		margin-bottom: 15px;
 		border-bottom: 1px solid $border;
+		color: $strongOrange;
 	}
 	p {
 		font-size: 28px;
+	}
+	span {
+		font-weight: bold;
+		color: $strongOrange;
 	}
 }
 
@@ -92,6 +97,40 @@ body {
 		margin-top: 25px;
 		text-align: left;
 		width: 750px;
+		.editMenu {
+			display: flex;
+			justify-content: center;
+			flex-direction: row;
+			flex-wrap: wrap;
+			padding-top: 25px;
+			padding-bottom: 25px;
+			input {
+				width: 550px;
+				font-size: 22px;
+				padding: 7px 5px;
+				border: none;
+			}
+			textarea {
+				width: 550px;
+				font-size: 20px;
+				padding: 7px 5px;
+				margin-top: 12px;
+				border: none;
+			}
+			button {
+				font-size: 32px;
+				border: none;
+				background: white;
+				padding: 3px 12px;
+				margin-top: 15px;
+				margin-left: 5px;
+				margin-right: 5px;
+			}
+			button:hover {
+				background: $strongOrange;
+				cursor: pointer;
+			}
+		}
 		h1 {
 			padding-bottom: 15px;	
 			border-bottom: 1px solid $border;
@@ -279,7 +318,7 @@ body {
 		background: $orange;
 	}
 	h2:hover {
-		color: $mint;
+		color: $strongOrange;
 		cursor: pointer;
 	}
 }

@@ -23,3 +23,10 @@ export const editNote = (note) => ({
 export const clearNote = () => ({
 	type: types.CLEAR_NOTES
 })
+
+export const updateNote = (note) => ({
+	type: types.UPDATE_NOTES,
+	id: note.id,
+	title: note.title,
+	content: note.content
+})

@@ -41,6 +41,15 @@ const notes = (state = [{
 				content: action.content
 			}
 			return newNotes;
+
+		case types.UPDATE_NOTES:
+			let currNotes = state.slice();
+			currNotes[action.id] = {
+				id: action.id,
+				title: action.title,
+				content: action.content
+			}
+			return currNotes;
 	
 		case types.CLEAR_NOTES:
 			return [];
