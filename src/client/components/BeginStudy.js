@@ -51,7 +51,7 @@ class BeginStudy extends React.Component {
 		return (
 			<div>
 
-				<h1>Card {this.state.currentIdx} of {this.state.studyDeck.length - 1}</h1>
+				<h1 className = 'studyTitle'>Card {this.state.currentIdx} of {this.state.studyDeck.length - 1}</h1>
 				
 				<div onClick = {this.flipCard} className = 'studyCard' style = {cardStyle}>
 					{this.state.front ? <h1>{currentCard.front}</h1> : <h1>{currentCard.back}</h1> }
@@ -61,6 +61,7 @@ class BeginStudy extends React.Component {
 				<button className = 'forwardBtn' onClick = {this.advance}>Forward</button><br />
 				
 				<button className = 'endBtn' onClick = {this.props.endStudy}>End Study</button>
+				
 			</div>
 		);
 	}

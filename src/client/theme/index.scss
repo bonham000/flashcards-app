@@ -19,8 +19,8 @@ body {
 	color: $mint;
 	padding: 0;
 	margin: 0;
-	font-family: sans-serif;
-	font-family: Avenir;
+	
+	font-family: 'Cormorant Garamond', serif;
 	min-width: 1300px;
 	a, a:visited {
 		text-decoration: none;
@@ -40,6 +40,7 @@ body {
 	  flex-direction: row;
 	  flex-wrap: wrap;
 	  justify-content: space-around;
+	  font-family: 'Cabin', serif;
 	  color: $gray;
 	  a, a:visited {
 	  	text-decoration: none;
@@ -125,6 +126,7 @@ body {
 				margin-top: 15px;
 				margin-left: 5px;
 				margin-right: 5px;
+				font-family: 'Cabin', serif;
 			}
 			button:hover {
 				background: $strongOrange;
@@ -198,6 +200,7 @@ body {
 		background: white;
 		padding: 3px 12px;
 		margin-top: 25px;
+		font-family: 'Cabin', serif;
 	}
 	button:hover {
 		background: $strongOrange;
@@ -223,7 +226,7 @@ body {
 	.cardsWrapper {
 		text-align: center;
 		.cardWrapper {
-			width: 950px;
+			width: 1250px;
 			margin: 15px auto;
 			padding: 20px;
 			display: flex;
@@ -236,8 +239,9 @@ body {
 			.front, .back {
 				margin: 10px;
 				padding: 3px 25px;
-				width: 400px;
+				width: 550px;
 				color: black;
+				font-size: 18px;
 			}
 			.front {
 				background: white;
@@ -281,6 +285,7 @@ body {
 			border: none;
 			background: white;
 			padding: 8px 4px;
+			font-family: 'Cabin', serif;
 		}
 		button:hover {
 			background: $border;
@@ -302,9 +307,10 @@ body {
 	justify-content: center;
 	text-align: center;
 	input {
-		font-size: 30px;
+		font-size: 28px;
 		padding: 45px 75px;
 		background: $card;
+		width: 900px;
 	}
 	button {
 		font-size: 32px;
@@ -312,6 +318,7 @@ body {
 		background: white;
 		padding: 8px 4px;
 		margin-top: 25px;
+		font-family: 'Cabin', serif;
 	}
 	button:hover {
 		cursor: pointer;
@@ -337,6 +344,7 @@ body {
 			background: white;
 			padding: 15px 10px;
 			margin: 5px 15px;
+			font-family: 'Cabin', serif;
 		}
 		button:hover {
 			cursor: pointer;
@@ -356,6 +364,9 @@ body {
 		.studyCard:hover {
 			cursor: pointer;
 		}
+		.studyTitle {
+			font-family: 'Cabin', serif;
+		}
 		button {
 			font-size: 32px;
 			border: none;
@@ -364,6 +375,7 @@ body {
 			margin-top: 25px;
 			margin-left: 10px;
 			margin-right: 10px;
+			font-family: 'Cabin', serif;
 		}
 		.forwardBtn {
 			background: #0FCF73;
@@ -384,13 +396,4 @@ body {
 		}
 	}
 }
-
-
-
-
-
-
-
-
-
 
