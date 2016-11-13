@@ -7,12 +7,12 @@ class BeginStudy extends React.Component {
 		cards.unshift({
 			front: 'This is the beginning of the deck',
 			back: 'This is the beginning of the deck',
-			id: -1
+			id: null
 		});
 		cards.push({
 			front: 'This is the end of the deck',
 			back: 'This is the end of the deck',
-			id: -1
+			id: null
 		});
 		console.log(cards)
 		this.setState({
@@ -26,14 +26,18 @@ class BeginStudy extends React.Component {
 		super(props);
 		this.state = {
 			studyDeck: [],
+			reviewDeck: [],
 			currentIdx: 1,
 			front: true,
-			transitionType: 'cardTransitionRight'
+			transitionType: 'cardTransitionRight',
+			ratingMessage: false,
+			review: false
 		}
 		this.flipCard = this.flipCard.bind(this);
 		this.advance = this.advance.bind(this);
 		this.retreat = this.retreat.bind(this);
 		this.handleKeyInput = this.handleKeyInput.bind(this);
+		this.rateCard = this.rateCard.bind(this);
 	}
 	handleKeyInput(k) {
 
@@ -54,7 +58,7 @@ class BeginStudy extends React.Component {
 		});
 	}
 	advance() {
-		if (this.state.currentIdx !== this.state.studyDeck.length - 1) {
+		if (this.state.currentIdx !== this.state.studyDeck.length - 2) {
 			let index = this.state.currentIdx;
 			this.setState({
 				transitionType: 'cardTransitionRight'
@@ -81,7 +85,27 @@ class BeginStudy extends React.Component {
 			}, 50);
 		}
 	}
+	rateCard(num) {
+		const { reviewDeck } = this.state;
+		const currentDeck = this.state.studyDeck.slice();
+		let currentCard = currentDeck[this.state.currentIdx];
+		if (currentCard.id !== null) {
+			currentCard.confidence = num;
+			reviewDeck.push(currentCard);
+			this.setState({
+				reviewDeck,
+				ratingMessage: true
+			});
+			this.advance();
+			setTimeout( () => {
+				this.setState({
+					ratingMessage: false
+				});
+			}, 1250);
+		}
+	}
 	render() {
+
 		let currentCard = this.state.studyDeck[this.state.currentIdx];
 
 		let cardStyle = {
@@ -92,7 +116,7 @@ class BeginStudy extends React.Component {
 				background: '#63E2C6'
 			}
 		}
-		if (currentCard.id === -1) {
+		if (currentCard.id === null) {
 			cardStyle = {
 				background: '#FC3F5D'
 			}
@@ -149,7 +173,16 @@ class BeginStudy extends React.Component {
 
 					</div>
 				</ReactCSSTransitionGroup>
-				
+
+				<div className = 'confidenceBtnWrapper'>
+					<button className = "confidenceBtn" id = 'btn1' onClick = {this.rateCard.bind(this, 1)}>1</button>
+					<button className = "confidenceBtn" id = 'btn2' onClick = {this.rateCard.bind(this, 2)}>2</button>
+					<button className = "confidenceBtn" id = 'btn3' onClick = {this.rateCard.bind(this, 3)}>3</button>
+					<button className = "confidenceBtn" id = 'btn4' onClick = {this.rateCard.bind(this, 4)}>4</button>
+					<button className = "confidenceBtn" id = 'btn5' onClick = {this.rateCard.bind(this, 5)}>5</button>
+					{ this.state.ratingMessage && <h1>Rating Submitted!</h1>}
+				</div>				
+
 			</div>
 		);
 	}

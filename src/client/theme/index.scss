@@ -405,6 +405,7 @@ body {
 		}
 		.studyTitle {
 			font-family: 'Cabin', serif;
+			margin: -5px auto 5px auto;
 		}
 		button {
 			font-size: 32px;
@@ -438,6 +439,33 @@ body {
 		button:hover {
 			cursor: pointer;
 			background: $mint;
+		}
+		.confidenceBtnWrapper {
+			width: 600px;
+			margin: 375px auto auto auto;
+			button {
+				width: 75px;
+				height: 75px;
+				margin: 0;
+			}
+			button:focus {
+				outline: none;
+			}
+			#btn1 {
+				background: $strongOrange
+			}
+			#btn2 {
+				background: $warn;
+			}
+			#btn3 {
+				background: $edit;
+			}
+			#btn4 {
+				background: $mint;
+			}
+			#btn5 {
+				background: $blue;
+			}
 		}
 	}
 }
