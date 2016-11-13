@@ -76,19 +76,23 @@ class Notes extends React.Component {
 			return (
 				<div className = 'note' key = {note.id}>
 
-				{ checkForEdit(editState, note.id) ? <div className = 'editMenu'>
-						<input 
-							className = 'editInput'
-							value = {this.state.edit.title} 
-							onChange = {this.handleEditTitle} />
-						<textarea
-							className = 'editContent'
-							value = {this.state.edit.content}
-							onChange = {this.handleEditContent}></textarea><br />
-						<button onClick = {this.cancelEdit}>Cancel Edit</button>
-						<button onClick = {this.submitEdit}>Submit Edit</button>
+				{ checkForEdit(editState, note.id) ?
+
+						<div className = 'editMenu'>
+							<input 
+								className = 'editInput'
+								value = {this.state.edit.title} 
+								onChange = {this.handleEditTitle} />
+							<textarea
+								className = 'editContent'
+								value = {this.state.edit.content}
+								onChange = {this.handleEditContent}></textarea><br />
+							<button className = 'submitBtn' onClick = {this.submitEdit}>Submit Edit</button>
+							<button className = 'cancelBtn' onClick = {this.cancelEdit}>Cancel Edit</button>
 						</div>
+
 							:
+							
 						<div>
 							<h1>{note.title}</h1>
 							<p>{note.content}</p>

@@ -95,8 +95,8 @@ class Flashcards extends React.Component {
 				{ !this.state.edit ? <div>
 					<div className = "header">
 						<h2>Flashcards View Page</h2>
-						<Link to = 'add-flashcards'><h2>Click here to add new cards!</h2></Link>
 						<Link to = 'study'><h2>Click here to begin studying!</h2></Link>
+						<Link to = 'add-flashcards'><h2>Click here to add new cards!</h2></Link>
 					</div>
 					<div className = "cardsWrapper">
 						{renderFlashcards}

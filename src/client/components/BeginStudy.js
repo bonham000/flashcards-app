@@ -106,8 +106,8 @@ class BeginStudy extends React.Component {
 				<h1 className = 'studyTitle'>End of Deck</h1> }
 				
 				<button className = 'backwardBtn' onClick = {this.retreat}>Backward</button>
+				<button className = 'endBtn' onClick = {this.props.endStudy}>End Session</button>
 				<button className = 'forwardBtn' onClick = {this.advance}>Forward</button>
-				<button className = 'endBtn' onClick = {this.props.endStudy}>End Study</button>
 
 				<ReactCSSTransitionGroup
 					transitionName = {this.state.transitionType}
