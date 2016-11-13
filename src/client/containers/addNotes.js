@@ -57,7 +57,7 @@ class addNotes extends React.Component {
 					type = 'text'
 					placeholder = 'An Awesome Note'
 					value = {this.state.noteTitle}
-					onChange = {this.editTitle} />````
+					onChange = {this.editTitle} />
 				<h3>Note Content:</h3>
 				<textarea
 					value = {this.state.noteContent}

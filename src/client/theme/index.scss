@@ -1,8 +1,6 @@
 // color variables
-$platinum: #DEE5E5;
+$blue: #2890F4;
 $mint: #0AC832;
-$dark: #0A021B;
-$nav: #0A021B;
 $body: rgb(25,35,45);
 $darkerBody: #191E28;
 $gray: rgb(230,230,230);
@@ -19,7 +17,7 @@ body {
 	color: $mint;
 	padding: 0;
 	margin: 0;
-	
+	height: 100%;
 	font-family: 'Cormorant Garamond', serif;
 	min-width: 1300px;
 	a, a:visited {
@@ -30,7 +28,6 @@ body {
 
 // navbar styling
 .navWrapper {
-	background: $nav;
 	border-bottom: 2px solid $border;
 	width: 100vw;
 	.linksWrapper {
@@ -127,6 +124,8 @@ body {
 				margin-left: 5px;
 				margin-right: 5px;
 				font-family: 'Cabin', serif;
+				border: 1px solid;
+				border-radius: 5px;
 			}
 			button:hover {
 				background: $strongOrange;
@@ -201,14 +200,16 @@ body {
 		padding: 3px 12px;
 		margin-top: 25px;
 		font-family: 'Cabin', serif;
+		border: 1px solid;
+		border-radius: 5px;
 	}
 	button:hover {
-		background: $strongOrange;
+		background: $blue;
 		cursor: pointer;
 	}
 }
 
-.flashcardsComponents {
+.flashcardsComponent {
 	a:hover {
 		cursor: pointer;
 		color: $strongOrange !important;
@@ -240,14 +241,24 @@ body {
 				margin: 10px;
 				padding: 3px 25px;
 				width: 550px;
+				min-height: 125px;
 				color: black;
-				font-size: 18px;
+				font-size: 14px;
+				border: 1px solid;
+				border: 1px solid;
+				border-radius: 5px;
+			}
+			.front:hover {
+				cursor: pointer;
+			}
+			.back:hover {
+				cursor: pointer;
 			}
 			.front {
-				background: white;
+				background: #FFE48F;
 			}
 			.back {
-				background: white;
+				background: #63E2C6
 			}
 			.edit {
 				margin-bottom: 5px;
@@ -266,17 +277,22 @@ body {
 		}
 	}
 	.editFlashcard {
-		width: 650px;
+		width: 1250px;
 		display: flex;
 		flex-wrap: nowrap;
 		flex-direction: column;
 		justify-content: center;
-		input {
-			font-size: 28px;
+		text-align: center;
+		textarea {
+			width: 850px;
+			min-height: 75px;
+			font-size: 22px;
 			padding: 25px 45px;
 			margin-top: 15px;
 			background: $card;
 			border: none;
+			margin-left: auto;
+			margin-right: auto;
 		}
 		button {
 			width: 300px;
@@ -286,13 +302,15 @@ body {
 			background: white;
 			padding: 8px 4px;
 			font-family: 'Cabin', serif;
+			border: 1px solid;
+			border-radius: 5px;
 		}
 		button:hover {
 			background: $border;
 			cursor: pointer;
 		}
 		.submitBtn:hover {
-			background: $mint;
+			background: $blue;
 		}
 		.cancelBtn:hover {
 			background: $warn;
@@ -306,9 +324,10 @@ body {
 	flex-direction: column;
 	justify-content: center;
 	text-align: center;
-	input {
-		font-size: 28px;
-		padding: 45px 75px;
+	textarea {
+		font-size: 22px;
+		min-height: 75px;
+		padding: 15px 25px;
 		background: $card;
 		width: 900px;
 	}
@@ -319,6 +338,8 @@ body {
 		padding: 8px 4px;
 		margin-top: 25px;
 		font-family: 'Cabin', serif;
+		border: 1px solid;
+		border-radius: 5px;
 	}
 	button:hover {
 		cursor: pointer;
@@ -345,6 +366,8 @@ body {
 			padding: 15px 10px;
 			margin: 5px 15px;
 			font-family: 'Cabin', serif;
+			border: 1px solid;
+			border-radius: 5px;
 		}
 		button:hover {
 			cursor: pointer;
@@ -352,11 +375,22 @@ body {
 		}
 	}
 	.studyView {
+		.cardTransitionWrapper {
+		  position: fixed;
+			margin-top: 25px;
+			left: 0;
+			right: 0;
+			margin-left: auto;
+			margin-right: auto;
+		  z-index: 10;
+		  width: 550px;
+		}
 		.studyCard {
 			padding: 35px;
-			color: rgb(20,20,20);
-			width: 550px;
 			height: 250px;
+			color: rgb(20,20,20);
+			border: 1px solid;
+			border-radius: 5px;
 			h1 {
 				font-size: 30px;
 			}
@@ -372,10 +406,12 @@ body {
 			border: none;
 			background: white;
 			padding: 8px 16px;
-			margin-top: 25px;
+			margin-top: 5px;
 			margin-left: 10px;
 			margin-right: 10px;
 			font-family: 'Cabin', serif;
+			border: 1px solid;
+			border-radius: 5px;
 		}
 		.forwardBtn {
 			background: #0FCF73;
@@ -384,7 +420,10 @@ body {
 			background: #FF4040;
 		}
 		.forwardBtn:hover, .backwardBtn:hover {
-			background: #2890F4;
+			background: $blue;
+		}
+		.endBtn {
+			background: #A37DFF;
 		}
 		.endBtn:hover {
 			cursor: pointer;
@@ -395,5 +434,52 @@ body {
 			background: $mint;
 		}
 	}
+}
+
+// card flip animation
+.cardFlip-enter {
+	transform: rotate(180deg);
+}
+.cardFlip-enter.cardFlip-enter-active {
+	transform: rotate(0deg);
+  transition: transform 250ms ease;
+}
+.cardFlip-leave {
+	opacity: 1;
+}
+.cardFlip-leave.cardFlip-leave-active {
+	opacity: 0.01;
+  transition: opacity 25ms ease;
+}
+
+// card switch animations
+.cardTransitionLeft-enter {
+  transform: translate(-200%);
+}
+.cardTransitionLeft-enter.cardTransitionLeft-enter-active {
+  transform: translate(0%);
+  transition: transform 750ms ease;
+}
+.cardTransitionLeft-leave {
+  transform: translate(0%);
+}
+.cardTransitionLeft-leave.cardTransitionLeft-leave-active {
+  transform: translate(200%);
+  transition: transform 250ms ease;
+}
+
+.cardTransitionRight-enter {
+  transform: translate(200%);
+}
+.cardTransitionRight-enter.cardTransitionRight-enter-active {
+  transform: translate(0%);
+  transition: transform 750ms ease;
+}
+.cardTransitionRight-leave {
+  transform: translate(0%);
+}
+.cardTransitionRight-leave.cardTransitionRight-leave-active {
+  transform: translate(-200%);
+  transition: transform 250ms ease;
 }
 

@@ -13,7 +13,7 @@ import * as flashcardActions from '../actions/flashcards'
 	}),
 )
 class EditFlashcards extends React.Component {
-	componentWillMount() {
+	componentDidMount() {
 		window.addEventListener('keydown', this.handleKeyPress);
 	}
 	static propTypes = {
@@ -24,7 +24,8 @@ class EditFlashcards extends React.Component {
 		super(props);
 		this.state = {
 			front: '',
-			back: ''
+			back: '',
+			submission: false
 		}
 		this.handleInput = this.handleInput.bind(this);
 		this.addNewCard = this.addNewCard.bind(this);
@@ -32,6 +33,7 @@ class EditFlashcards extends React.Component {
 	}
 	handleKeyPress(key) {
 		if (key.keyCode === 13) {
+			key.preventDefault();
 			if (this.state.front !== '' && this.state.back !== '') {
 				this.addNewCard();
 			}
@@ -39,7 +41,8 @@ class EditFlashcards extends React.Component {
 	}
 	handleInput(event) {
 		this.setState({
-			[event.target.name]: event.target.value
+			[event.target.name]: event.target.value,
+			submission: false
 		});
 	}
 	addNewCard() {
@@ -52,7 +55,8 @@ class EditFlashcards extends React.Component {
 			this.props.actions.addFlashcard(newCard);
 			this.setState({
 				front: '',
-				back: ''
+				back: '',
+				submission: true
 			});
 			document.getElementById('frontCardInput').focus();
 		}
@@ -61,7 +65,9 @@ class EditFlashcards extends React.Component {
 		return (
 			<div className = 'addFlashcardsComponent'>
 				<h1>Add new flashcards to your deck here:</h1>
-				<input
+				
+				<textarea
+					autoFocus
 					type = "text"
 					name = "front"
 					id = "frontCardInput"
@@ -69,17 +75,23 @@ class EditFlashcards extends React.Component {
 					placeholder = "Card Front"
 					value = {this.state.front}
 					onChange = {this.handleInput} /><br />
-				<input
+				
+				<textarea
 					type = "text"
 					name = "back"
 					className = "cardInput"
 					placeholder = "Card Back"
 					value = {this.state.back}
 					onChange = {this.handleInput} /><br />
+				
 				<button onClick = {this.addNewCard}>Submit and Save Cards</button>
+				
 				<Link to = 'flashcards'>
 					<h2>Return to View All Flashcards</h2>
 				</Link>
+
+				{ this.state.submission && <h1>Card Submitted!</h1> }
+
 			</div>
 		);
 	}

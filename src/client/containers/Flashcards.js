@@ -73,10 +73,10 @@ class Flashcards extends React.Component {
 		const renderFlashcards = this.props.flashcards.map( (card) => {
 			return (
 				<div key = {card.id} className = "cardWrapper">
-					<div className = "front">
+					<div className = "front" onClick = {this.editNote.bind(this, card.id)}>
 						<h2>{card.front}</h2>
 					</div>
-					<div className = "back">
+					<div className = "back" onClick = {this.editNote.bind(this, card.id)}>
 						<h2>{card.back}</h2>
 					</div>
 					<div className = "options">
@@ -91,7 +91,7 @@ class Flashcards extends React.Component {
 			)
 		});
 		return (
-			<div className = "flashcardsComponents">
+			<div className = "flashcardsComponent">
 				{ !this.state.edit ? <div>
 					<div className = "header">
 						<h2>Flashcards View Page</h2>
@@ -104,13 +104,13 @@ class Flashcards extends React.Component {
 				</div> : <div className = "editFlashcard">
 					<h1>Edit a Flashcard</h1>
 
-					<input
+					<textarea
 						type = "text"
 						className = "editFront"
 						value = {this.state.editFront}
 						onChange = {this.handleEditFront} />
 
-					<input
+					<textarea
 						type = "text"
 						className = "editBack"
 						value = {this.state.editBack}

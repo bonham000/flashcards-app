@@ -110,12 +110,12 @@ class Notes extends React.Component {
 		<div className = 'notesPageContainer'>
 			
 			<h1>This is the Notes Page</h1>
-			
-			{notes}
 
 			<Link to = '/add-notes'>
 				<h2>Click here to add a new note</h2>
 			</Link>
+			
+			{notes}
 
 		</div>
 		)
