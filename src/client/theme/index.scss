@@ -452,18 +452,12 @@ body {
 				outline: none;
 			}
 			#btn1 {
-				background: $strongOrange
+				background: $warn
 			}
 			#btn2 {
-				background: $warn;
-			}
-			#btn3 {
 				background: $edit;
 			}
-			#btn4 {
-				background: $mint;
-			}
-			#btn5 {
+			#btn3 {
 				background: $blue;
 			}
 		}

@@ -3,21 +3,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class BeginStudy extends React.Component {
 	componentWillMount() {
-		const cards = this.props.deck.slice();
-		cards.unshift({
-			front: 'This is the beginning of the deck',
-			back: 'This is the beginning of the deck',
-			id: null
-		});
-		cards.push({
-			front: 'This is the end of the deck',
-			back: 'This is the end of the deck',
-			id: null
-		});
-		console.log(cards)
-		this.setState({
-			studyDeck: cards
-		});
+		this.initDeck();
 	}
 	componentDidMount() {
 		window.addEventListener('keydown', this.handleKeyInput, false);
@@ -33,13 +19,45 @@ class BeginStudy extends React.Component {
 			ratingMessage: false,
 			review: false
 		}
+		this.initDeck = this.initDeck.bind(this);
 		this.flipCard = this.flipCard.bind(this);
 		this.advance = this.advance.bind(this);
 		this.retreat = this.retreat.bind(this);
 		this.handleKeyInput = this.handleKeyInput.bind(this);
 		this.rateCard = this.rateCard.bind(this);
+		this.restart = this.restart.bind(this);
+	}
+	initDeck() {
+		const cards = this.props.deck.slice();
+		cards.unshift({
+			front: 'This is the beginning of the deck',
+			back: 'This is the beginning of the deck',
+			id: null
+		});
+		cards.push({
+			front: 'This is the end of the deck',
+			back: 'This is the end of the deck',
+			id: null
+		});
+		this.setState({
+			studyDeck: cards
+		});
+	}
+	restart() {
+		this.setState({
+			studyDeck: [],
+			reviewDeck: [],
+			currentIdx: 1,
+			front: true,
+			transitionType: 'cardTransitionRight',
+			ratingMessage: false,
+			review: false
+		});
+		this.initDeck();
 	}
 	handleKeyInput(k) {
+
+		k.preventDefault();
 
 		const key = k.keyCode;
 
@@ -49,6 +67,12 @@ class BeginStudy extends React.Component {
 			this.advance();
 		} else if (key === 37) {
 			this.retreat();
+		} else if (key === 49) {
+			this.rateCard(1);
+		} else if (key === 50) {
+			this.rateCard(2);
+		} else if (key === 51) {
+			this.rateCard(3);
 		}
 
 	}
@@ -58,7 +82,31 @@ class BeginStudy extends React.Component {
 		});
 	}
 	advance() {
-		if (this.state.currentIdx !== this.state.studyDeck.length - 2) {
+
+		if (this.state.currentIdx === this.state.studyDeck.length - 2 && this.state.reviewDeck.length !== 0) {
+
+			const { reviewDeck } = this.state;
+
+			reviewDeck.unshift({
+				front: 'This is the end of the deck, continue forward to review the cards you missed.',
+				back: 'This is the end of the deck, continue forward to review the cards you missed.',
+				id: null
+			})
+			reviewDeck.push({
+				front: 'This is the end of the review deck, nice studying! Click this card to start over!',
+				back: 'This is the end of the review deck, nice studying! Click this card to start over!',
+				id: null,
+				restart: true
+			});
+
+			this.setState({
+				reviewDeck: [],
+				studyDeck: reviewDeck,
+				currentIdx: 0,
+				review: true
+			});
+
+		} else if (this.state.currentIdx !== this.state.studyDeck.length - 1) {
 			let index = this.state.currentIdx;
 			this.setState({
 				transitionType: 'cardTransitionRight'
@@ -86,20 +134,43 @@ class BeginStudy extends React.Component {
 		}
 	}
 	rateCard(num) {
+
 		const { reviewDeck } = this.state;
 		const currentDeck = this.state.studyDeck.slice();
 		let currentCard = currentDeck[this.state.currentIdx];
-		if (currentCard.id !== null) {
-			currentCard.confidence = num;
-			reviewDeck.push(currentCard);
+
+		if (num !== 3) {
+			if (currentCard.id !== null) {
+				const filteredReview = reviewDeck.filter( (card) => {
+					return card.id !== currentCard.id;
+				});
+				currentCard.confidence = num;
+				filteredReview.push(currentCard);
+				this.setState({
+					reviewDeck: filteredReview,
+					ratingMessage: 'Rating Submitted!'
+				});
+				this.advance();
+				setTimeout( () => {
+					this.setState({
+						ratingMessage: ''
+					});
+				}, 1250);
+			}
+		} else {
+
+			const filteredReview = reviewDeck.filter( (card) => {
+				return card.id !== currentCard.id;
+			});
+
 			this.setState({
-				reviewDeck,
-				ratingMessage: true
+				ratingMessage: 'Nice!',
+				reviewDeck: filteredReview
 			});
 			this.advance();
 			setTimeout( () => {
 				this.setState({
-					ratingMessage: false
+					ratingMessage: ''
 				});
 			}, 1250);
 		}
@@ -121,7 +192,6 @@ class BeginStudy extends React.Component {
 				background: '#FC3F5D'
 			}
 		}
-
 		return (
 			<div>
 
@@ -145,13 +215,29 @@ class BeginStudy extends React.Component {
 								transitionName = 'cardFlip'
 								transitionEnterTimeout = {250}
 								transitionLeaveTimeout = {50} >
-								<div
-									onClick = {this.flipCard}
-									className = 'studyCard'
-									style = {cardStyle}
-									key = {currentCard.front.toString().substring(0,5)}>
-									<h1>{currentCard.front}</h1>
-								</div>
+
+								{ currentCard.restart ?
+
+									<div
+										onClick = {this.restart}
+										className = 'studyCard'
+										style = {cardStyle}
+										key = {currentCard.front.toString().substring(0,5)}>
+										<h1>{currentCard.front}</h1>
+									</div>
+
+									:
+
+									<div
+										onClick = {this.flipCard}
+										className = 'studyCard'
+										style = {cardStyle}
+										key = {currentCard.front.toString().substring(0,5)}>
+										<h1>{currentCard.front}</h1>
+									</div>
+
+								}
+
 							</ReactCSSTransitionGroup>
 
 							:
@@ -178,9 +264,7 @@ class BeginStudy extends React.Component {
 					<button className = "confidenceBtn" id = 'btn1' onClick = {this.rateCard.bind(this, 1)}>1</button>
 					<button className = "confidenceBtn" id = 'btn2' onClick = {this.rateCard.bind(this, 2)}>2</button>
 					<button className = "confidenceBtn" id = 'btn3' onClick = {this.rateCard.bind(this, 3)}>3</button>
-					<button className = "confidenceBtn" id = 'btn4' onClick = {this.rateCard.bind(this, 4)}>4</button>
-					<button className = "confidenceBtn" id = 'btn5' onClick = {this.rateCard.bind(this, 5)}>5</button>
-					{ this.state.ratingMessage && <h1>Rating Submitted!</h1>}
+					{ this.state.ratingMessage && <h1>{this.state.ratingMessage}</h1>}
 				</div>				
 
 			</div>
