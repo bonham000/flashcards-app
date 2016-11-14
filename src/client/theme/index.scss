@@ -358,6 +358,13 @@ body {
 
 .studyComponent {
 	text-align: center;
+	.studyInstructions {
+		font-size: 26px;
+		width: 650px;
+		margin: 25px auto;
+		color: $strongOrange;
+		font-weight: bold;
+	}
 	.studyOptions {
 		h1 {
 			padding-bottom: 25px;

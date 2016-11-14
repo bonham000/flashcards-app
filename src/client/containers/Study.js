@@ -59,6 +59,8 @@ class Study extends React.Component {
 					<h1>Study Flashcard Deck</h1>
 					<button onClick = {this.studyOriginal}>Study Original Order</button>
 					<button onClick = {this.studyShuffle}>Shuffle Cards and Study</button>
+					<p className = 'studyInstructions'>Use the arrow keys to move forward and backward, the spacebar to flip the cards,
+						and the number keys to rate your knowledge. Good luck!</p>
 				</div> }
 				{ this.state.study &&
 				<div className = 'studyView'>
